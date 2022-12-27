@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Card, Divider, H2, H4, H6 } from "@blueprintjs/core"
+import { Card, Divider, H2, H4, H6, InputGroup } from "@blueprintjs/core"
 import { css } from "@emotion/react"
 
 let concordance = require('./concordance.json')
@@ -48,9 +48,20 @@ const Entry = ({entry}: {entry: EntryI}) => {
 
 function App() {
   return (
+    <>
+    <div className="App">
+      <InputGroup
+        type="search"
+        placeholder="search..."
+        large
+        fill
+        leftIcon="search"
+      />
+    </div>
     <div className="App">
       <Entry entry={concordance[0]}/>
     </div>
+    </>
   );
 }
 
