@@ -18,7 +18,7 @@ const Occurence = ({occurence, num}: {occurence: OccurenceI, num: number}) => {
   return (
     <Card className="Occurence">
       <H6>
-        {num}] Book {occurence.book}, {occurence.canto}, {occurence.stanza}.
+        ({num}) Book {occurence.book}, {occurence.canto}, {occurence.stanza}.
         {occurence.line_num}
       </H6>
       <Divider/>
