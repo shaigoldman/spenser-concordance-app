@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import { Card, Divider, H2, H4, H6 } from "@blueprintjs/core"
+import { css } from "@emotion/react"
 
 let concordance = require('./concordance.json')
-console.log(concordance)
 
 interface OccurenceI {
   book: number
@@ -12,12 +13,17 @@ interface OccurenceI {
   whole_line: string
 }
 
-const Occurence = ({occurence}: {occurence: OccurenceI}) => {
+const Occurence = ({occurence, num}: {occurence: OccurenceI, num: number}) => {
+
   return (
-    <p>
-      Book {occurence.book}, {occurence.canto}, {occurence.stanza}.
-      {occurence.line_num}: "{occurence.whole_line}"
-    </p>
+    <Card className="Occurence">
+      <H6>
+        {num}] Book {occurence.book}, {occurence.canto}, {occurence.stanza}.
+        {occurence.line_num}
+      </H6>
+      <Divider/>
+      "{occurence.whole_line}"
+    </Card>
   )
 }
 
@@ -28,9 +34,14 @@ interface EntryI {
 
 const Entry = ({entry}: {entry: EntryI}) => {
   return (
-    <div>
-      <b>{entry.word}</b>
-      {entry.occurences.map((e) => <Occurence occurence={e} />)}
+    <div className="Entry">
+      <Card elevation={2} css={css`width: 150px`}>
+        <H4>Concordance Entry For "{entry.word}": </H4> 
+        {entry.occurences.length} total:
+        <div>
+          {entry.occurences.map((e, i) => <Occurence key={entry.word + i} num={i+1} occurence={e} />)}
+        </div>
+      </Card>
     </div>
   )
 }
@@ -38,9 +49,7 @@ const Entry = ({entry}: {entry: EntryI}) => {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Entry entry={concordance[0]}/>
-      </header>
+      <Entry entry={concordance[0]}/>
     </div>
   );
 }
