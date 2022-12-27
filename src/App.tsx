@@ -1,23 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+let concordance = require('./concordance.json')
+console.log(concordance)
+
+interface OccurenceI {
+  book: number
+  canto: string
+  stanza: number
+  line_num: number
+  whole_line: string
+}
+
+const Occurence = ({occurence}: {occurence: OccurenceI}) => {
+  return (
+    <p>
+      Book {occurence.book}, {occurence.canto}, {occurence.stanza}.
+      {occurence.line_num}: "{occurence.whole_line}"
+    </p>
+  )
+}
+
+interface EntryI {
+  word: string
+  occurences: OccurenceI[]
+}
+
+const Entry = ({entry}: {entry: EntryI}) => {
+  return (
+    <div>
+      <b>{entry.word}</b>
+      {entry.occurences.map((e) => <Occurence occurence={e} />)}
+    </div>
+  )
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Entry entry={concordance[0]}/>
       </header>
     </div>
   );
