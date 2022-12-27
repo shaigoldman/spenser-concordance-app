@@ -1,9 +1,17 @@
 import React from 'react';
 import './App.css';
-import { Card, Divider, H2, H4, H6, InputGroup } from "@blueprintjs/core"
+import { Alignment, Card, Divider, H1, H2, H3, H4, H6, InputGroup, Navbar } from "@blueprintjs/core"
 import { css } from "@emotion/react"
+import spenserImg from './spenser.jpeg'
 
-let concordance = require('./concordance.json')
+const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
+  const words = line.split(" ")
+  return (
+    <>
+      {words.map((w, e) => w === word ? <b key={"word"+w+e}>{w + " "}</b> : <React.Fragment key={"word"+w+e}>{w + " "}</React.Fragment>)}
+    </>
+  )
+}
 
 interface OccurenceI {
   book: number
@@ -13,7 +21,7 @@ interface OccurenceI {
   whole_line: string
 }
 
-const Occurence = ({occurence, num}: {occurence: OccurenceI, num: number}) => {
+const Occurence = ({word, num, occurence}: {word: string, num: number, occurence: OccurenceI}) => {
 
   return (
     <Card className="Occurence">
@@ -22,7 +30,7 @@ const Occurence = ({occurence, num}: {occurence: OccurenceI, num: number}) => {
         {occurence.line_num}
       </H6>
       <Divider/>
-      "{occurence.whole_line}"
+      "<BoldWordInLine line={occurence.whole_line} word={word} />"
     </Card>
   )
 }
@@ -32,34 +40,56 @@ interface EntryI {
   occurences: OccurenceI[]
 }
 
+
+const concordance: EntryI[] = require('./concordance.json')
+
 const Entry = ({entry}: {entry: EntryI}) => {
   return (
     <div className="Entry">
       <Card elevation={2} css={css`width: 150px`}>
         <H4>Concordance Entry For "{entry.word}": </H4> 
         {entry.occurences.length} total:
-        <div>
-          {entry.occurences.map((e, i) => <Occurence key={entry.word + i} num={i+1} occurence={e} />)}
+        <div className='Occurence-List'>
+          {entry.occurences.map((e, i) => <Occurence key={entry.word + i} word={entry.word} num={i+1} occurence={e} />)}
         </div>
       </Card>
     </div>
   )
 }
 
+const NavBar = () => <Navbar fixedToTop>
+<Navbar.Group align={Alignment.LEFT} className="Header">
+  <Navbar.Heading className='Title-Name'>
+    <h2>Spenser Concordance</h2>
+  </Navbar.Heading>
+  <Navbar.Divider/>
+  <div className='Search-Bar'>
+  <InputGroup
+    type="search"
+    placeholder="search a word..."
+    fill
+    leftIcon="search"
+  />
+  </div>
+</Navbar.Group>
+</Navbar>
+
+const Header = () => <div className="Title">
+  <H1>Spenser Concordance</H1>
+  <H4>An Online Concordance For the Works</H4>
+  <H4>Of Edmund Spenser</H4>
+  <H6>By Shai Goldman</H6>
+  <img src={spenserImg} alt="Edmund Spenser" className="Image"/>
+</div>
+
 function App() {
   return (
     <>
-    <div className="App">
-      <InputGroup
-        type="search"
-        placeholder="search..."
-        large
-        fill
-        leftIcon="search"
-      />
-    </div>
-    <div className="App">
-      <Entry entry={concordance[0]}/>
+    <NavBar/>
+    <Header/>
+    <div className="Entry-List">
+      {concordance.slice(0, 100).map(
+        (e, i) => <Entry entry={e} key={"entry"+i}/>)}
     </div>
     </>
   );
