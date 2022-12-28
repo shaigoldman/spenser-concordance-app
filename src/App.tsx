@@ -8,27 +8,10 @@ import { Footer } from './components/Footer';
 
 const concordance: EntryI[] = require('./resources/concordance.json')
 const pageSize = 10
-let sticky = -1
 
 function App() {
 
-  const [navSticky, setNavSticky] = useState(false)
   const [page, setPage] = useState(0)
-
-  window.onscroll = function () {
-  
-    const navbar = document.getElementById("navbar")
-  
-    if (sticky === -1) {
-      sticky = navbar!.offsetTop
-    }
-  
-    if (window.pageYOffset >= sticky) {
-      setNavSticky(true)
-    } else {
-      setNavSticky(false)
-    }
-  };
 
   return (
     <>
@@ -44,13 +27,12 @@ function App() {
           size={pageSize}
         />
       </div>
-      {navSticky && 
-        <Footer 
-          page={page} 
-          setPage={setPage}
-          maxPage={Math.ceil(concordance.length/pageSize)-1}
-        />}
-
+      <div id="space"/>
+      <Footer 
+        page={page} 
+        setPage={setPage}
+        maxPage={Math.ceil(concordance.length/pageSize)-1}
+      />
     </>
   );
 }

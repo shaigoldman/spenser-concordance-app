@@ -15,4 +15,5 @@
   text-align: center;
   position: sticky;
   top: 50px;
+  z-index: 2;
 }
