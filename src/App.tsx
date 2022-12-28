@@ -48,7 +48,7 @@ function App() {
         <Footer 
           page={page} 
           setPage={setPage}
-          maxPage={Math.ceil(concordance.length/pageSize)}
+          maxPage={Math.ceil(concordance.length/pageSize)-1}
         />}
 
     </>
