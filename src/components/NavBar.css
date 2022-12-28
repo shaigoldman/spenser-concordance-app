@@ -1,0 +1,13 @@
+.NavBar {
+  width: 100%;
+  padding: 5px 10px;
+}
+
+.Search-Bar {
+  flex-grow: 3;
+  padding: 5px 20px;
+}
+
+.Title-Name {
+  vertical-align: middle;
+}

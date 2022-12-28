@@ -1,7 +1,8 @@
+import './NavBar.css'
 import { Alignment, InputGroup, Navbar } from "@blueprintjs/core"
 
 export const NavBar = () => <Navbar fixedToTop>
-  <Navbar.Group align={Alignment.LEFT} className="Header">
+  <Navbar.Group align={Alignment.LEFT} className="NavBar">
     <Navbar.Heading className='Title-Name'>
       <h2>Spenser Concordance</h2>
     </Navbar.Heading>

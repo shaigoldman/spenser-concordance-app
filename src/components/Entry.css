@@ -1,0 +1,13 @@
+.Occurence-List {
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.Entry {
+  width: 90%;
+  padding: 10px 10px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}

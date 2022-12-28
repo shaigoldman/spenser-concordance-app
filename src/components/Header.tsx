@@ -1,3 +1,4 @@
+import './Header.css'
 import { H1, H4, H6 } from "@blueprintjs/core"
 import spenserImg from '../resources/spenser.jpeg'
 
