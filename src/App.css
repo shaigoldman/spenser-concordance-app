@@ -1,2 +1,15 @@
+.sticky-pad {
+  padding: 50px 0 0 0;
+}
 
+#space {
+  padding: 30px
+}
 
+#top {
+  background-color: antiquewhite;
+  border-radius: 50px 50px 0 0;
+  border-width: 1px 0 0 0;
+  border-style: ridge;
+  border-color: black;
+}
