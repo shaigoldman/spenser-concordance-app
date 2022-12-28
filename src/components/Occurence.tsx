@@ -8,7 +8,7 @@ const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
     <>
       {words.map((w, e) => 
         (word === "&" && w === "&")
-        || (w.replace(/\W/g, "") === word) ? 
+        || (w.toLowerCase().replace(/\W/g, "") === word) ? 
           <b key={"word"+w+e}>{w + " "}</b> 
           : <React.Fragment key={"word"+w+e}>{w + " "}</React.Fragment>)}
     </>
