@@ -6,7 +6,7 @@ const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
   const words = line.split(" ")
   return (
     <>
-      {words.map((w, e) => w === word ? <b key={"word"+w+e}>{w + " "}</b> : <React.Fragment key={"word"+w+e}>{w + " "}</React.Fragment>)}
+      {words.map((w, e) => w.replace(/\W/g, "") === word ? <b key={"word"+w+e}>{w + " "}</b> : <React.Fragment key={"word"+w+e}>{w + " "}</React.Fragment>)}
     </>
   )
 }
