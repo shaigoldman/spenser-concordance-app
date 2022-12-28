@@ -18,19 +18,14 @@ function App() {
   window.onscroll = function () {
   
     const navbar = document.getElementById("navbar")
-    const body = document.getElementById("body")
   
     if (sticky === -1) {
       sticky = navbar!.offsetTop
     }
   
     if (window.pageYOffset >= sticky) {
-      navbar!.classList.add("sticky")
-      body!.classList.add("sticky-pad")
       setNavSticky(true)
     } else {
-      navbar!.classList.remove("sticky");
-      body!.classList.remove("sticky-pad")
       setNavSticky(false)
     }
   };

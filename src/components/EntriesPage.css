@@ -8,7 +8,11 @@
   display: flex;
 }
 
-.Entry-List-Title {
-  padding: 20px 0 0 0;
+#Entry-List-Title {
+  padding: 6px;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
   text-align: center;
+  position: sticky;
+  top: 50px;
 }
