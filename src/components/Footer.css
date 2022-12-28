@@ -1,5 +1,16 @@
-.Footer {
+#Footer {
   width: 100%;
   position: fixed;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.Select-Page {
+  flex-grow: 3;
+  padding: 5px 20px;
+}
+
+.Page-Button {
+  padding: 15px 0;
 }

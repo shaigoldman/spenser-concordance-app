@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { EntryI } from './components/Entry'
 import { NavBar } from './components/NavBar'
@@ -10,27 +10,31 @@ const concordance: EntryI[] = require('./resources/concordance.json')
 const pageSize = 10
 let sticky = -1
 
-window.onscroll = function () {
-
-  console.log("herhe")
-
-  const navbar = document.getElementById("navbar")
-  const body = document.getElementById("body")
-
-  if (sticky === -1) {
-    sticky = navbar!.offsetTop
-  }
-
-  if (window.pageYOffset >= sticky) {
-    navbar!.classList.add("sticky")
-    body!.classList.add("sticky-pad")
-  } else {
-    navbar!.classList.remove("sticky");
-    body!.classList.remove("sticky-pad")
-  }
-};
-
 function App() {
+
+  const [navSticky, setNavSticky] = useState(false)
+  const [page, setPage] = useState(0)
+
+  window.onscroll = function () {
+  
+    const navbar = document.getElementById("navbar")
+    const body = document.getElementById("body")
+  
+    if (sticky === -1) {
+      sticky = navbar!.offsetTop
+    }
+  
+    if (window.pageYOffset >= sticky) {
+      navbar!.classList.add("sticky")
+      body!.classList.add("sticky-pad")
+      setNavSticky(true)
+    } else {
+      navbar!.classList.remove("sticky");
+      body!.classList.remove("sticky-pad")
+      setNavSticky(false)
+    }
+  };
+
   return (
     <>
       <div id="top">
@@ -41,11 +45,16 @@ function App() {
       <div id="body">
         <EntriesPage 
           concordance={concordance} 
-          start={0} 
+          start={page*pageSize} 
           size={pageSize}
         />
       </div>
-      <Footer/>
+      {navSticky && 
+        <Footer 
+          page={page} 
+          setPage={setPage}
+          maxPage={Math.ceil(concordance.length/pageSize)}
+        />}
 
     </>
   );
