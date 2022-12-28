@@ -16,7 +16,7 @@ export const Entry = ({entry}: {entry: EntryI}) => {
       <Card elevation={2} className="Entry-Card">
         <div className='Entry-Title'>
           <H4>Concordance Entry For "{entry.word}" {
-            entry.split_num > 0 && <>({entry.split_num})</>
+            entry.split_num !== -1 && <>({entry.split_num+1})</>
             }: </H4> 
         </div>
         {entry.occurrences.length} total:
