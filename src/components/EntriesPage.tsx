@@ -4,26 +4,22 @@ import { Entry } from './Entry'
 import { ConcordanceI } from '../Interfaces/Concordance';
 import { H3 } from '@blueprintjs/core';
 
-interface EntriesPageProps {
-  concordance: ConcordanceI
-  start: number
-  size: number
-}
-export const EntriesPage = ({concordance, start, size}: EntriesPageProps) => {
+
+export const EntriesPage = ({data}: {data: ConcordanceI}) => {
   
-  const slice = concordance.slice(start, start+size)
+  console.log("here", data)
 
   return (
     <>
       <div id='Entry-List-Title'>
         <H3>
-          Displaying entries {start}-{start+size} ("
-          {slice[0].word}" to 
-          "{slice[slice.length-1].word}"):
+          Displaying entries {0}-{0} ("
+          {data[0].word}" to 
+          "{data[data.length-1].word}"):
         </H3>
       </div>
       <div className="Entry-List">
-        {slice.map(
+        {data.map(
           (e, i) => <Entry entry={e} key={"entry"+i}/>)}
       </div>
     </>

@@ -1,28 +1,33 @@
 import './Entry.css'
 import { Card,  H4 } from "@blueprintjs/core"
-import { OccurenceI, Occurence } from './Occurence'
+import { OccurrenceI, Occurrence } from './Occurrence'
 
 export interface EntryI {
   word: string
-  occurences: OccurenceI[]
+  total: number
+  occurrences: OccurrenceI[]
+  split_num: number
 }
 
 export const Entry = ({entry}: {entry: EntryI}) => {
+
   return (
     <div className="Entry">
       <Card elevation={2} className="Entry-Card">
         <div className='Entry-Title'>
-          <H4>Concordance Entry For "{entry.word}": </H4> 
+          <H4>Concordance Entry For "{entry.word}" {
+            entry.split_num > 0 && <>({entry.split_num})</>
+            }: </H4> 
         </div>
-        {entry.occurences.length} total:
+        {entry.occurrences.length} total:
         <div className='Occurence-List'>
-          {entry.occurences.map(
+          {entry.occurrences.map(
             (e, i) => 
-              <Occurence 
+              <Occurrence
                 key={entry.word + i} 
                 word={entry.word} 
                 num={i+1} 
-                occurence={e} 
+                occurrence={e} 
               />)}
         </div>
       </Card>

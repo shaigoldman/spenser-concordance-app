@@ -15,28 +15,22 @@ const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
   )
 }
 
-export interface OccurenceI {
-  book: number
-  canto: string
-  stanza: number
-  line_num: number
-  whole_line: string
+export interface OccurrenceI {
+  location: string
+  line_text: string
 }
 
-export const Occurence = ({word, num, occurence}: 
-  {word: string, num: number, occurence: OccurenceI}
+export const Occurrence = ({word, num, occurrence}: 
+  {word: string, num: number, occurrence: OccurrenceI}
   ) => {
 
     return (
-      <Card className="Occurence">
+      <Card className="Occurrence">
         <H6>
-            ({num}) Book {occurence.book}
-            , {occurence.canto}
-            , {occurence.stanza}.
-            {occurence.line_num}
+            ({num}) Book {occurrence.location}
         </H6>
         <Divider/>
-        "<BoldWordInLine line={occurence.whole_line} word={word} />"
+        "<BoldWordInLine line={occurrence.line_text} word={word} />"
       </Card>
     )
 }

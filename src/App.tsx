@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
-import { EntryI } from './components/Entry'
 import { NavBar } from './components/NavBar'
 import { Header } from './components/Header'  
 import { EntriesPage } from './components/EntriesPage';
 import { Footer } from './components/Footer';
 
-const concordance: EntryI[] = require('./resources/concordance.json')
-const pageSize = 10
+const page0 = require(`./resources/concordance/page0.json`)
 
 function App() {
 
   const [page, setPage] = useState(0)
+  const [data, setData] = useState(page0)
+  console.log(data)
+
+  function handleSetPage(value: number) {
+    setPage(value)
+    setData(require(`./resources/concordance/page${value}.json`))
+  }
 
   return (
     <>
@@ -22,16 +27,14 @@ function App() {
       <NavBar/>
       <div id="body">
         <EntriesPage 
-          concordance={concordance} 
-          start={page*pageSize} 
-          size={pageSize}
+          data={data} 
         />
       </div>
       <div id="space"/>
       <Footer 
         page={page} 
-        setPage={setPage}
-        maxPage={Math.ceil(concordance.length/pageSize)-1}
+        setPage={handleSetPage}
+        maxPage={537}
       />
     </>
   );
