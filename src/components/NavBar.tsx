@@ -1,5 +1,5 @@
 import './NavBar.css'
-import { Alignment, InputGroup, Navbar } from "@blueprintjs/core"
+import { Alert, Alignment, Callout, InputGroup, Navbar } from "@blueprintjs/core"
 import { useEffect, useState } from 'react'
 import { WordIndex } from '../Interfaces/Interfaces'
 
@@ -13,25 +13,33 @@ interface NavBarProps {
 export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
 
   const [searchVal, setSearchVal] = useState("")
+  const [submitVal, setSubmitVal] = useState("")
+  const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
-
-    if (searchVal === "") {
-      return
-    }
-
-    const element = document.getElementById(searchVal)
+    
+    const element = document.getElementById(submitVal)
     if (element) {
-      console.log(element)
       element.scrollIntoView(true)
       window.scrollBy(0, -100)
     }
 
     return () => {}
-  }, [searchVal, page]);
+  }, [searchVal, page, submitVal]);
   
   return (
     <div id="navbar">
+      <Alert
+        canEscapeKeyCancel
+        canOutsideClickCancel
+        isOpen={notFound}
+        onClose={()=>setNotFound(false)}
+        intent="primary"
+      >
+        <Callout intent="danger">
+          The word "{submitVal}" was not found in the concordance!
+        </Callout>
+      </Alert>
       <Navbar>
         <Navbar.Group align={Alignment.LEFT} className="NavBar">
           <Navbar.Heading className='Title-Name'>
@@ -42,7 +50,13 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
           <form
             onSubmit={(e)=>{
               e.preventDefault();
+              setSubmitVal(searchVal)
+              if (!wordIndex[searchVal]) {
+                setNotFound(true)
+                return
+              }
               setPage(wordIndex[searchVal])
+              setSearchVal("")
             }}
           >
             <InputGroup

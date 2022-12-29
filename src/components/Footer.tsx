@@ -1,5 +1,9 @@
+/* Something to note here is that pages are actually 0-indexed,
+ * but display as 1-indexed, causing some confusions.
+ */
+
 import React, { useState } from 'react';
-import {Alignment, Navbar, InputGroup, Button, ButtonProps} from "@blueprintjs/core"
+import {Alignment, Navbar, InputGroup, Button, ButtonProps, Alert, Callout} from "@blueprintjs/core"
 import './Footer.css';
 
 
@@ -60,10 +64,27 @@ const PageButtons = ({page, setPage, maxPage}: FooterProps) => {
 }
 
 export const Footer = ({page, setPage, maxPage}: FooterProps) => {
+  
   const [choosePageVal, setChoosePageVal] = useState("")
+  const [badPage, setBadPage] = useState(false)
 
   return (
     <div id="Footer">
+      <Alert
+        canEscapeKeyCancel
+        canOutsideClickCancel
+        isOpen={badPage}
+        onClose={()=>{
+          setBadPage(false)
+          setChoosePageVal("")
+        }}
+        intent="primary"
+      >
+        <Callout intent="danger">
+          The page "{choosePageVal}" is not valid!
+          Please choose a page between 1 and {maxPage+1}.
+        </Callout>
+      </Alert>
       <Navbar>
         <Navbar.Group align={Alignment.LEFT} className="NavBar">
           <Navbar.Heading className='Title-Name'>
@@ -81,9 +102,12 @@ export const Footer = ({page, setPage, maxPage}: FooterProps) => {
               onSubmit={(e)=>{
                   e.preventDefault();
                   const val = parseInt(choosePageVal)
-                  if (val) {
-                    setPage(val)
+                  if (val && val < maxPage-1 && val >= 0) {
+                    setPage(val-1)
                     setChoosePageVal("")
+                  }
+                  else {
+                    setBadPage(true)
                   }
                 }}
             >
