@@ -83,6 +83,7 @@ export const Footer = ({page, setPage, maxPage}: FooterProps) => {
                   const val = parseInt(choosePageVal)
                   if (val) {
                     setPage(val)
+                    setChoosePageVal("")
                   }
                 }}
             >

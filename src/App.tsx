@@ -4,9 +4,11 @@ import { NavBar } from './components/NavBar'
 import { Header } from './components/Header'  
 import { EntriesPage } from './components/EntriesPage';
 import { Footer } from './components/Footer';
+import { EntryI } from './components/Entry';
+import { Index } from './Interfaces/Interfaces';
 
-const index = require('./resources/concordance/index.json')
-const page0 = require(`./resources/concordance/page0.json`)
+const index: Index = require('./resources/concordance/index.json')
+const page0: EntryI[] = require(`./resources/concordance/page0.json`)
 
 function App() {
 
@@ -39,7 +41,7 @@ function App() {
         <Header/>
         <div className="space"/>
       </div>
-      <NavBar/>
+      <NavBar setPage={handleSetPage} wordIndex={index.words}/>
       <div id="body">
         <EntriesPage 
           data={data}

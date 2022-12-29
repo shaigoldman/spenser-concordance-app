@@ -1,16 +1,14 @@
 import React from 'react';
 import './EntriesPage.css';
 import { Entry, EntryI } from './Entry'
-import { ConcordanceI } from '../Interfaces/Concordance';
 import { H3 } from '@blueprintjs/core';
 
 function getTitle(entry: EntryI) {
   return entry.word + (entry.split_num !== -1 ? ` (${entry.split_num+1})` : "")
 }
 
-export const EntriesPage = ({data, start}: {data: ConcordanceI, start: number}) => {
+export const EntriesPage = ({data, start}: {data: EntryI[], start: number}) => {
     
-
   return (
     <>
       <div id='Entry-List-Title'>
