@@ -17,11 +17,11 @@ export const EntriesPage = ({data, start}: {data: ConcordanceI, start: number}) 
         <H3>
           {data.length > 1 ?
             <>
-              Displaying entries {start}-{start+data.length} ("
+              Displaying entries {start+1}-{start+data.length} ("
               {getTitle(data[0])}" to "{getTitle(data[data.length-1])}"):
             </>
             : <>
-              Displaying entry {start} ({getTitle(data[0])})
+              Displaying entry {start+1} ({getTitle(data[0])})
             </>
           }
         </H3>

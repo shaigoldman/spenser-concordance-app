@@ -6,11 +6,15 @@ const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
   const words = line.split(" ")
   return (
     <>
-      {words.map((w, e) => 
-        (word === "&" && w === "&")
+      {words.map((w, i) => {
+
+        const wordWithSpace = i === words.length-1 ? w : w + " "
+
+        return (word === "&" && w === "&")
         || (w.toLowerCase().replace(/\W/g, "") === word) ? 
-          <b key={"word"+w+e}>{w + " "}</b> 
-          : <React.Fragment key={"word"+w+e}>{w + " "}</React.Fragment>)}
+          <b key={"word"+w+i}>{wordWithSpace}</b> 
+          : <React.Fragment key={"word"+w+i}>{wordWithSpace}</React.Fragment>}
+          )}
     </>
   )
 }
@@ -30,7 +34,7 @@ export const Occurrence = ({word, num, occurrence}:
             ({num}) Book {occurrence.location}
         </H6>
         <Divider/>
-        "<BoldWordInLine line={occurrence.line_text} word={word} />"
+        "<BoldWordInLine line={occurrence.line_text} word={word}/>"
       </Card>
     )
 }

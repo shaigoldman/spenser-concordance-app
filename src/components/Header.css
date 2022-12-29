@@ -4,9 +4,12 @@
 }
 
 .Image {
-  width: 70%;
+  width: 400px;
   height: 300px;
-  border-radius: 25px;
+  border-radius: 50px;
+  border-width: 1px 0 0 0;
+  border-style: ridge;
+  border-color: black;
   object-fit: none;
   object-position: 50% 30%;
 }
