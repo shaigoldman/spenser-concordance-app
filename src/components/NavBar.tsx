@@ -15,6 +15,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
   const [searchVal, setSearchVal] = useState("")
   const [submitVal, setSubmitVal] = useState("")
   const [notFound, setNotFound] = useState(false)
+  const [searchSuccess, setSearchSuccess] = useState(false)
 
   useEffect(() => {
     
@@ -32,13 +33,21 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
       <Alert
         canEscapeKeyCancel
         canOutsideClickCancel
-        isOpen={notFound}
-        onClose={()=>setNotFound(false)}
+        isOpen={notFound || searchSuccess}
+        onClose={()=>{
+          setNotFound(false)
+          setSearchSuccess(false)
+        }}
         intent="primary"
       >
-        <Callout intent="danger">
-          The word "{submitVal}" was not found in the concordance!
-        </Callout>
+        {notFound ?
+          <Callout intent="danger">
+            The word "{submitVal}" was not found in the concordance!
+          </Callout>
+          : <Callout intent="primary">
+            The word "{submitVal}" was found on page {page}.
+          </Callout>
+        }
       </Alert>
       <Navbar>
         <Navbar.Group align={Alignment.LEFT} className="NavBar">
@@ -57,6 +66,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
               }
               setPage(wordIndex[searchVal])
               setSearchVal("")
+              setSearchSuccess(true)
             }}
           >
             <InputGroup
