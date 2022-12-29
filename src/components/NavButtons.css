@@ -1,0 +1,12 @@
+.NavButton {
+  position: fixed;
+  top: 50%
+}
+
+.NavButtonForwards {
+  right: 1%;
+}
+
+.NavButtonBackwards {
+  left: 1%;
+}

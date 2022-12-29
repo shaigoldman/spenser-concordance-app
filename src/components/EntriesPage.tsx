@@ -8,19 +8,26 @@ function getTitle(entry: EntryI) {
   return entry.word + (entry.split_num !== -1 ? ` (${entry.split_num+1})` : "")
 }
 
-export const EntriesPage = ({data, start}: {data: EntryI[], start: number}) => {
+interface EntriesPageProps {
+  page: number
+  data: EntryI[]
+  start: number
+}
+
+export const EntriesPage = ({page, data, start}: EntriesPageProps) => {
     
   return (
     <>
       <div id='Entry-List-Title'>
         <H3>
+          Page {page+1}: {" "}
           {data.length > 1 ?
             <>
-              Displaying entries {start+1}-{start+data.length} ("
+              Entries {start+1}-{start+data.length} ("
               {getTitle(data[0])}" to "{getTitle(data[data.length-1])}"):
             </>
             : <>
-              Displaying entry {start+1} ({getTitle(data[0])})
+              Entry {start+1} ({getTitle(data[0])})
             </>
           }
         </H3>
