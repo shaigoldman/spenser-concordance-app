@@ -32,7 +32,6 @@ const ElipsesButtonSpace = () => (
     </div>
 )
 
-
 interface FooterProps {
   page: number
   setPage: (val: number) => void
@@ -78,21 +77,26 @@ export const Footer = ({page, setPage, maxPage}: FooterProps) => {
           />
           <Navbar.Divider/>
           <div className='Select-Page'>
-            <InputGroup
-              placeholder="choose page..."
-              fill
-              leftIcon="double-chevron-right"
-              value={choosePageVal}
-              onSubmit={()=>{
-                const val = parseInt(choosePageVal)
-                if (val) {
-                  setPage(val)
+            <form 
+              onSubmit={(e)=>{
+                  e.preventDefault();
+                  const val = parseInt(choosePageVal)
+                  if (val) {
+                    setPage(val)
+                  }
+                }}
+            >
+              <InputGroup
+                placeholder="choose page..."
+                type="text"
+                fill
+                leftIcon="double-chevron-right"
+                value={choosePageVal}
+                onChange = {(event) => {
+                  setChoosePageVal(event.target.value)}
                 }
-              }}
-              onChange = {(event) => {
-                setChoosePageVal(event.target.value)}
-              }
-            />
+              />
+            </form>
           </div>
         </Navbar.Group>
       </Navbar>

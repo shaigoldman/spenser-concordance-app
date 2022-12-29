@@ -12,13 +12,26 @@ function App() {
 
   const [page, setPage] = useState(0)
   const [data, setData] = useState(page0)
-  console.log(data)
+  const [showFooter, setShowFooter] = useState(false)
 
   function handleSetPage(value: number) {
     setPage(value)
     setData(require(`./resources/concordance/page${value}.json`))
     document.getElementById("body")!.scrollIntoView(true)
   }
+
+  window.onscroll = function() {
+    const top = document.getElementById("top")
+    if (top) {
+      const rect = top.getBoundingClientRect();
+      if (rect.top < -100) {
+        setShowFooter(true)
+      }
+      else {
+        setShowFooter(false)
+      }
+    }
+  };
 
   return (
     <>
@@ -33,12 +46,14 @@ function App() {
           start={index.page_starts[page]}
         />
       </div>
-      <div className="space"/>
-      <Footer 
-        page={page} 
-        setPage={handleSetPage}
-        maxPage={index.metadata.num_pages-1}
-      />
+      {showFooter && <>
+        <div className="space"/>
+        <Footer 
+          page={page} 
+          setPage={handleSetPage}
+          maxPage={index.metadata.num_pages-1}
+        />
+      </>}
     </>
   );
 }

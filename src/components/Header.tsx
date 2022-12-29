@@ -7,4 +7,5 @@ export const Header = () => <div className="Title">
   <H4>An Online Concordance For the Works</H4>
   <H4>Of Edmund Spenser</H4>
   <img src={spenserImg} alt="Edmund Spenser" className="Image"/>
+  <div className='header-space'></div>
 </div>

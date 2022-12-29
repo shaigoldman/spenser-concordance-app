@@ -13,3 +13,7 @@
   object-fit: none;
   object-position: 50% 30%;
 }
+
+.header-space {
+  padding: 12px
+}
