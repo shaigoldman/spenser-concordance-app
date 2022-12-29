@@ -39,7 +39,7 @@ export const EntriesPage = ({page, data, start}: EntriesPageProps) => {
               entry={e} 
               title={getTitle(e)}
               key={"entry"+i}
-              num={i+1}
+              num={start+i+1}
             />)}
       </div>
     </>
