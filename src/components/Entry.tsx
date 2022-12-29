@@ -9,15 +9,13 @@ export interface EntryI {
   split_num: number
 }
 
-export const Entry = ({entry}: {entry: EntryI}) => {
+export const Entry = ({title, entry}: {title: string, entry: EntryI}) => {
 
   return (
     <div className="Entry">
       <Card elevation={2} className="Entry-Card">
         <div className='Entry-Title'>
-          <H4>Concordance Entry For "{entry.word}" {
-            entry.split_num !== -1 && <>({entry.split_num+1})</>
-            }: </H4> 
+          <H4>Concordance Entry For "{title}": </H4> 
         </div>
         {entry.occurrences.length} total:
         <div className='Occurence-List'>

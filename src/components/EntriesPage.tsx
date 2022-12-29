@@ -1,26 +1,39 @@
 import React from 'react';
 import './EntriesPage.css';
-import { Entry } from './Entry'
+import { Entry, EntryI } from './Entry'
 import { ConcordanceI } from '../Interfaces/Concordance';
 import { H3 } from '@blueprintjs/core';
 
+function getTitle(entry: EntryI) {
+  return entry.word + (entry.split_num !== -1 ? ` (${entry.split_num+1})` : "")
+}
 
-export const EntriesPage = ({data}: {data: ConcordanceI}) => {
-  
-  console.log("here", data)
+export const EntriesPage = ({data, start}: {data: ConcordanceI, start: number}) => {
+    
 
   return (
     <>
       <div id='Entry-List-Title'>
         <H3>
-          Displaying entries {0}-{0} ("
-          {data[0].word}" to 
-          "{data[data.length-1].word}"):
+          {data.length > 1 ?
+            <>
+              Displaying entries {start}-{start+data.length} ("
+              {getTitle(data[0])}" to "{getTitle(data[data.length-1])}"):
+            </>
+            : <>
+              Displaying entry {start} ({getTitle(data[0])})
+            </>
+          }
         </H3>
       </div>
       <div className="Entry-List">
         {data.map(
-          (e, i) => <Entry entry={e} key={"entry"+i}/>)}
+          (e, i) => 
+            <Entry 
+              entry={e} 
+              title={getTitle(e)}
+              key={"entry"+i}
+            />)}
       </div>
     </>
   )
