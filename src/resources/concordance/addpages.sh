@@ -1,6 +1,7 @@
-for i in {1..5}
+for i in *
 do
-  git add -f page${i}.json
-  git commit -m "page${i}"
+  echo $i
+  git add -f ${i}
+  git commit -m "auto add ${i}"
   git push
 done
