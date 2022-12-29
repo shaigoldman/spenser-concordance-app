@@ -4,8 +4,7 @@ import { NavBar } from './components/NavBar'
 import { Header } from './components/Header'  
 import { EntriesPage } from './components/EntriesPage';
 import { Footer } from './components/Footer';
-import { EntryI } from './components/Entry';
-import { Index } from './Interfaces/Interfaces';
+import { EntryI, Index } from './Interfaces/Interfaces';
 
 const index: Index = require('./resources/concordance/index.json')
 const page0: EntryI[] = require(`./resources/concordance/page0.json`)

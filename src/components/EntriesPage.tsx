@@ -1,7 +1,8 @@
 import React from 'react';
 import './EntriesPage.css';
-import { Entry, EntryI } from './Entry'
+import { Entry } from './Entry'
 import { H3 } from '@blueprintjs/core';
+import { EntryI } from '../Interfaces/Interfaces';
 
 function getTitle(entry: EntryI) {
   return entry.word + (entry.split_num !== -1 ? ` (${entry.split_num+1})` : "")
@@ -31,6 +32,7 @@ export const EntriesPage = ({data, start}: {data: EntryI[], start: number}) => {
               entry={e} 
               title={getTitle(e)}
               key={"entry"+i}
+              num={i+1}
             />)}
       </div>
     </>

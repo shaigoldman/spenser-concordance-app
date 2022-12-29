@@ -1,6 +1,7 @@
 import './Occurence.css'
 import React from 'react';
 import { Card, Divider, H6 } from "@blueprintjs/core"
+import { OccurrenceI } from '../Interfaces/Interfaces';
 
 const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
   const words = line.split(" ")
@@ -17,11 +18,6 @@ const BoldWordInLine = ({line, word}: {line: string, word: string}) => {
           )}
     </>
   )
-}
-
-export interface OccurrenceI {
-  location: string
-  line_text: string
 }
 
 export const Occurrence = ({word, num, occurrence}: 
