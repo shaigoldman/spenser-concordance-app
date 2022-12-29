@@ -1,16 +1,34 @@
 import './NavBar.css'
 import { Alignment, InputGroup, Navbar } from "@blueprintjs/core"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { WordIndex } from '../Interfaces/Interfaces'
 
+
 interface NavBarProps {
-  setPage: (val: number) => void;
+  setPage: (val: number) => void
   wordIndex: WordIndex
+  page: number
 }
 
-export const NavBar = ({setPage, wordIndex}: NavBarProps) => {
+export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
 
   const [searchVal, setSearchVal] = useState("")
+
+  useEffect(() => {
+
+    if (searchVal === "") {
+      return
+    }
+
+    const element = document.getElementById(searchVal)
+    if (element) {
+      console.log(element)
+      element.scrollIntoView(true)
+      window.scrollBy(0, -100)
+    }
+
+    return () => {}
+  }, [searchVal, page]);
   
   return (
     <div id="navbar">
@@ -25,7 +43,6 @@ export const NavBar = ({setPage, wordIndex}: NavBarProps) => {
             onSubmit={(e)=>{
               e.preventDefault();
               setPage(wordIndex[searchVal])
-              setSearchVal("")
             }}
           >
             <InputGroup

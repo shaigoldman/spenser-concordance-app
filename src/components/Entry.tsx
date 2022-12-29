@@ -11,8 +11,10 @@ export interface EntryI {
 
 export const Entry = ({title, entry}: {title: string, entry: EntryI}) => {
 
+  const entryId = entry.split_num <= 0 ? entry.word : title
+
   return (
-    <div className="Entry">
+    <div className="Entry" id={entryId}>
       <Card elevation={2} className="Entry-Card">
         <div className='Entry-Title'>
           <H4>Concordance Entry For "{title}": </H4> 

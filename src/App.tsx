@@ -20,6 +20,7 @@ function App() {
     setPage(value)
     setData(require(`./resources/concordance/page${value}.json`))
     document.getElementById("body")!.scrollIntoView(true)
+    window.scrollBy(0, -100)
   }
 
   window.onscroll = function() {
@@ -41,7 +42,7 @@ function App() {
         <Header/>
         <div className="space"/>
       </div>
-      <NavBar setPage={handleSetPage} wordIndex={index.words}/>
+      <NavBar setPage={handleSetPage} wordIndex={index.words} page={page}/>
       <div id="body">
         <EntriesPage 
           data={data}
