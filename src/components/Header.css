@@ -4,14 +4,12 @@
 }
 
 .Image {
-  width: 400px;
-  height: 300px;
-  border-radius: 50px;
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 20%;
   border-width: 4px 0 0 0;
   border-style: ridge;
   border-color: black;
-  object-fit: none;
-  object-position: 50% 30%;
 }
 
 .header-space {
