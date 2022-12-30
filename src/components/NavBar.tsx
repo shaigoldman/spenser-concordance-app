@@ -39,6 +39,8 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
   const [notFound, setNotFound] = useState(false)
   const [searchSuccess, setSearchSuccess] = useState(false)
 
+  const HeaderText = document.body.clientWidth > 600 ? "Spenser Concordance" : "E.S. Ccd."
+
   useEffect(() => {
     
     const element = document.getElementById(submitVal)
@@ -74,7 +76,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
       <Navbar>
         <Navbar.Group align={Alignment.LEFT} className="NavBar-Main">
           <Navbar.Heading className='Title-Name'>
-            <h2>Spenser Concordance</h2>
+            <h2>{HeaderText}</h2>
           </Navbar.Heading>
           <Navbar.Divider/>
           <div className='Search-Bar'>
