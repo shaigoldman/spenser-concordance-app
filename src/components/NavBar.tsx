@@ -39,7 +39,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
   const [notFound, setNotFound] = useState(false)
   const [searchSuccess, setSearchSuccess] = useState(false)
 
-  const HeaderText = document.body.clientWidth > 600 ? "Spenser Concordance" : "E.S. Ccd."
+  const HeaderText = document.body.clientWidth > 600 ? "Spenser Concordance" : "Spenser"
 
   useEffect(() => {
     
