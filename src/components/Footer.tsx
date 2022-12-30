@@ -86,7 +86,7 @@ export const Footer = ({page, setPage, maxPage}: FooterProps) => {
         </Callout>
       </Alert>
       <Navbar>
-        <Navbar.Group align={Alignment.LEFT} className="NavBar">
+        <Navbar.Group align={Alignment.LEFT} className="Footer-Bar">
           <Navbar.Heading className='Title-Name'>
             <h2>Pages:</h2>
           </Navbar.Heading>
