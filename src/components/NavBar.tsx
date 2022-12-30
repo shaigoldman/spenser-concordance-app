@@ -3,6 +3,14 @@ import { Alert, Alignment, Callout, InputGroup, Navbar } from "@blueprintjs/core
 import { useEffect, useState } from 'react'
 import { WordIndex } from '../Interfaces/Interfaces'
 
+const height = Math.max(
+  document.body.scrollHeight, 
+  document.body.offsetHeight,
+  document.documentElement.clientHeight, 
+  document.documentElement.scrollHeight, 
+  document.documentElement.offsetHeight
+);
+
 const GithubLink = () => (
   <a href="https://github.com/shaigoldman/spenser-concordance-app"
     className='Githublink-Container'
@@ -36,7 +44,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
     const element = document.getElementById(submitVal)
     if (element) {
       element.scrollIntoView(true)
-      window.scrollBy(0, -100)
+      window.scrollBy(0, -(height*.003))
     }
 
     return () => {}
