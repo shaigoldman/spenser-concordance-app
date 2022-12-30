@@ -27,7 +27,7 @@ export const Occurrence = ({word, num, occurrence}:
     return (
       <Card className="Occurrence">
         <H6>
-            ({num}) Book {occurrence.location}
+            ({num}) {occurrence.location}
         </H6>
         <Divider/>
         "<BoldWordInLine line={occurrence.line_text} word={word}/>"
