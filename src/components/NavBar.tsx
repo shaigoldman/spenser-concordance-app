@@ -2,7 +2,6 @@ import './NavBar.css'
 import { Alert, Alignment, Callout, InputGroup, Navbar } from "@blueprintjs/core"
 import { useEffect, useState } from 'react'
 import { WordIndex } from '../Interfaces/Interfaces'
-import githubMark from '../resources/github-mark.png'
 
 const GithubLink = () => (
   <a href="https://github.com/shaigoldman/spenser-concordance-app"
@@ -13,7 +12,7 @@ const GithubLink = () => (
   >
     <img 
       className='Githublink'
-      src={githubMark} 
+      src="https://raw.githubusercontent.com/shaigoldman/spenser-concordance-app/main/src/resources/github-mark.png"
       alt="Star me on Githbub!"
     />
   </a>
