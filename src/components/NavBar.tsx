@@ -82,7 +82,7 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
               onSubmit={(e)=>{
                 e.preventDefault();
                 setSubmitVal(searchVal.toLowerCase())
-                if (!wordIndex[searchVal.toLowerCase()]) {
+                if (wordIndex[searchVal.toLowerCase()] === undefined) {
                   setNotFound(true)
                   return
                 }
