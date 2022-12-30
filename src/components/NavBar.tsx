@@ -2,7 +2,22 @@ import './NavBar.css'
 import { Alert, Alignment, Callout, InputGroup, Navbar } from "@blueprintjs/core"
 import { useEffect, useState } from 'react'
 import { WordIndex } from '../Interfaces/Interfaces'
+import githubMark from '../resources/github-mark.png'
 
+const GithubLink = () => (
+  <a href="https://github.com/shaigoldman/spenser-concordance-app"
+    className='Githublink-Container'
+    title="Star me on Githbub!"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <img 
+      className='Githublink'
+      src={githubMark} 
+      alt="Star me on Githbub!"
+    />
+  </a>
+)
 
 interface NavBarProps {
   setPage: (val: number) => void
@@ -50,37 +65,40 @@ export const NavBar = ({page, setPage, wordIndex}: NavBarProps) => {
         }
       </Alert>
       <Navbar>
-        <Navbar.Group align={Alignment.LEFT} className="NavBar">
+        <Navbar.Group align={Alignment.LEFT} className="NavBar-Main">
           <Navbar.Heading className='Title-Name'>
             <h2>Spenser Concordance</h2>
           </Navbar.Heading>
           <Navbar.Divider/>
           <div className='Search-Bar'>
-          <form
-            onSubmit={(e)=>{
-              e.preventDefault();
-              setSubmitVal(searchVal.toLowerCase())
-              if (!wordIndex[searchVal.toLowerCase()]) {
-                setNotFound(true)
-                return
-              }
-              setPage(wordIndex[searchVal.toLowerCase()])
-              setSearchVal("")
-              setSearchSuccess(true)
-            }}
-          >
-            <InputGroup
-              type="search"
-              placeholder="search a word..."
-              fill
-              leftIcon="search"
-              value={searchVal}
-              onChange = {(event) => {
-                setSearchVal(event.target.value)}
-              }
-            />
-          </form>
+            <form
+              onSubmit={(e)=>{
+                e.preventDefault();
+                setSubmitVal(searchVal.toLowerCase())
+                if (!wordIndex[searchVal.toLowerCase()]) {
+                  setNotFound(true)
+                  return
+                }
+                setPage(wordIndex[searchVal.toLowerCase()])
+                setSearchVal("")
+                setSearchSuccess(true)
+              }}
+            >
+              <InputGroup
+                type="search"
+                placeholder="search a word..."
+                fill
+                leftIcon="search"
+                value={searchVal}
+                onChange = {(event) => {
+                  setSearchVal(event.target.value)}
+                }
+              />
+            </form>
           </div>
+        </Navbar.Group>
+        <Navbar.Group align={Alignment.RIGHT} className="Nav-Right-Group">
+          <GithubLink />
         </Navbar.Group>
       </Navbar>
     </div>

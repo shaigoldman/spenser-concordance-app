@@ -5,17 +5,31 @@
   z-index: 30;
 }
 
-.NavBar {
-  width: 100%;
+.NavBar-Main {
+  width: 90%;
   padding: 5px 10px;
 }
 
 .Search-Bar {
-  flex-grow: 3;
+  width: 100%;
+  flex-grow: 5;
   padding: 5px 20px;
 }
 
 .Title-Name {
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.Githublink {
+  max-width: 45%;
+  max-height: 45%;
+}
+
+.Githublink-Container {
+  text-align: right;
+}
+
+.Nav-Right-Group {
+  width: 10%;
 }
