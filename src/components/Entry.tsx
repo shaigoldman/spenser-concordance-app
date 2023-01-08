@@ -18,7 +18,9 @@ export const Entry = ({title, entry, num}: EntryProps) => {
         <div className='Entry-Title'>
           <H4>[{num}] Concordance Entry For "{title}": </H4> 
         </div>
-        {entry.occurrences.length} total:
+        {entry.total} total
+        {entry.split_num !== -1 && <> (Showing {entry.occurrences.length})</>}
+        :
         <div className='Occurence-List'>
           {entry.occurrences.map(
             (e, i) => 
